@@ -143,14 +143,14 @@ def start_end_date(start, end):
     """Return a list of min, avg, max temp for start date"""
 
     # Query for data
-    startdata = session.query(func.min(Measurement.tobs), func.max(Measurement.tobs), func.avg(Measurement.tobs)).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
+    startenddata = session.query(func.min(Measurement.tobs), func.max(Measurement.tobs), func.avg(Measurement.tobs)).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
 
 
     session.close()
 
     # Store in dict
     startendlist = []
-    for min, avg, max in startdata:
+    for min, avg, max in startenddata:
         startenddict = {}
         startenddict['min'] = min
         startenddict['avg'] = avg
